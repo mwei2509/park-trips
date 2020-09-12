@@ -1,0 +1,14 @@
+FROM node:10.16.3-alpine
+
+COPY docker/scripts /scripts
+RUN /scripts/image-dependencies.sh
+
+WORKDIR /server
+COPY ./api /server
+
+RUN NODE_ENV=production npm rebuild
+RUN NODE_ENV=production npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

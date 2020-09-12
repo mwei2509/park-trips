@@ -1,0 +1,7 @@
+FROM postgres:9.6
+
+ENV POSTGRES_USER=parktrips
+ENV POSTGRES_PASSWORD=parktrips
+ENV POSTGRES_DB=parktrips_development
+
+COPY docker/db/init-test-db.sql /docker-entrypoint-initdb.d/

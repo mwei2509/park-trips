@@ -1,0 +1,71 @@
+# docker-compose for development setup
+version: '3'
+
+services:
+  web:
+    container_name: parktrips-web
+    image: parktrips_web
+    build:
+      context: .
+      dockerfile: Dockerfile-web
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./web:/parktrips:delegated
+    command: bash -c "npm install && npm start"
+
+  db:
+    container_name: parktrips-db
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    ports:
+      - '5432:5432'
+
+  api:
+    container_name: parktrips-api
+    image: parktrips_api
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+    environment:
+      - NODE_ENV=development
+      - DB_HOSTNAME=parktrips-db
+    ports:
+      - 3000:3000
+      - 5858:5858
+    volumes:
+      - ./api:/server:delegated
+      - /var/run/docker.sock:/var/run/docker.sock:delegated
+    depends_on:
+      - db
+    command: bash -c "apk add git && npm install && npm run migrate && npm run debug"
+  # pubsub:
+  #   container_name: parktrips-pubsub-emulator
+  #   image: 'zenoss/gcloud-emulator:pubsub'
+  #   ports:
+  #     - 8085:8085
+  # redis:
+  #   container_name: parktrips-redis
+  #   image: 'redis:5.0-alpine'
+  #   command: redis-server
+  #   ports:
+  #     - '6379:6379'
+  # subscribers:
+  #   container_name: parktrips-subscribers
+  #   image: parktrips_api
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-api
+  #   environment:
+  #     - NODE_ENV=development
+  #     - DB_HOSTNAME=parktrips-db
+  #   volumes:
+  #     - ./api:/server:delegated
+  #   depends_on:
+  #     - api
+  #     - pubsub
+  #     - redis
+  #   command: node src/pubsub

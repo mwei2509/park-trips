@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Apercu Black';
+  src: url("fonts/apercu-black.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Black Italic';
+  src: url("fonts/apercu-black-italic.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Bold';
+  src: url("fonts/apercu-bold-pro.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Bold Italic';
+  src: url("fonts/apercu-bold-italic.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Medium';
+  src: url("fonts/apercu-medium.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Medium Italic';
+  src: url("fonts/apercu-medium-italic.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Light';
+  src: url("fonts/apercu-light-pro.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Light Italic';
+  src: url("fonts/apercu-light-italic.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Regular';
+  src: url("fonts/apercu-regular-pro.woff2"); 
+}
+
+@font-face {
+  font-family: 'Apercu Italic';
+  src: url("fonts/apercu-italic.woff2"); 
+}
+
+@font-face {
+  font-family: 'SangBleu Kingdom Regular';
+  src: url("fonts/SangBleuKingdom-Regular.otf"); 
+}
+
+@font-face {
+  font-family: 'SangBleu Kingdom Light';
+  src: url("fonts/SangBleuKingdom-Light.otf"); 
+}

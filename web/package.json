@@ -1,0 +1,107 @@
+{
+  "name": "parktrips-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
+    "connected-react-router": "^6.6.1",
+    "date-fns": "^1.30.1",
+    "emotion": "^9.2.12",
+    "emotion-theming": "^9.2.9",
+    "history": "^4.10.1",
+    "prop-types": "^15.7.2",
+    "ramda": "^0.26.1",
+    "react": "^16.12.0",
+    "react-chartjs-2": "^2.9.0",
+    "react-dom": "^16.12.0",
+    "react-emotion": "^9.2.12",
+    "react-google-login": "^5.1.0",
+    "react-input-mask": "^2.0.4",
+    "react-number-format": "3.6.2",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-transition-group": "^4.3.0",
+    "redux": "^4.0.5",
+    "redux-axios-middleware": "^4.0.1",
+    "webpack": "^4.41.5"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack -p --config webpack.config.prod.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-diff": "./node_modules/.bin/eslint --cache --ext js,jsx .",
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/_mocha __tests__ --exclude **/dependencies.test.js --require @babel/register --require jsdom-global/register --recursive --timeout=25000 --exit",
+    "test-coverage": "rm -rf coverage && rm -f coverage.lcov && ./node_modules/nyc/bin/nyc.js --reporter=lcovonly npm test && ./node_modules/nyc/bin/nyc.js report && ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov",
+    "test-compile": "webpack --config webpack.config.test.js",
+    "test-dependencies": "./node_modules/mocha/bin/_mocha __tests__/dependencies.test.js --require @babel/register --require jsdom-global/register --timeout=25000"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-stage-2": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@babel/traverse": "^7.8.4",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-emotion": "^10.0.27",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "chai": "^4.2.0",
+    "codecov": "^3.6.4",
+    "css-loader": "^3.4.2",
+    "depcheck": "^0.9.2",
+    "enzyme-redux": "^0.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.18.2",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.1",
+    "jsdom": "^16.1.0",
+    "jsdom-global": "3.0.2",
+    "lint-staged": "^10.0.7",
+    "mini-css-extract-plugin": "^0.9.0",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
+    "style-loader": "^1.1.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.2",
+    "webpack-plugin-hash-output": "^3.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint",
+      "npm run test-dependencies"
+    ]
+  },
+  "nyc": {
+    "all": true,
+    "cache": true,
+    "check-coverage": true,
+    "per-file": false,
+    "lines": 2,
+    "statements": 2,
+    "functions": 0,
+    "branches": 0,
+    "include": [
+      "src"
+    ]
+  }
+}

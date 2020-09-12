@@ -1,0 +1,16 @@
+FROM node:10.16.3-alpine
+
+COPY docker/scripts /scripts
+RUN /scripts/image-dependencies.sh
+
+# set working directory
+RUN mkdir /parktrips
+WORKDIR /parktrips
+COPY ./web ./
+
+RUN NODE_ENV=production npm install
+
+EXPOSE 8080
+
+# start app
+CMD ["npm", "start"]
